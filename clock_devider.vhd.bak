@@ -1,0 +1,24 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity count is 
+port(
+		clk1 : IN STD_LOGIC
+
+		);
+
+end entity count;
+		  --clk generation.For 50 MHz clock this generates 1 Hz clock.
+			process(clk1)
+				begin
+					if(clk1'event and clk1='1') then
+						count <= count+1;
+						if(count = 25000) then
+							clk <= not clk;
+							count <=1;
+						end if;
+					end if;
+			end process;

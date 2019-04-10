@@ -1,0 +1,128 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity MUX is
+port(
+		hr0_in: in std_logic_vector (3 downto 0);
+		hr1_in: in std_logic_vector (1 downto 0);
+		min0_in: in std_logic_vector (3 downto 0);
+		min1_in: in std_logic_vector (2 downto 0);
+		s0_in: in std_LOGIC_vector(3 downto 0);
+		s1_in: in std_LOGIC_vector(2 downto 0);
+		
+		hr0_in_alarm: in std_logic_vector (3 downto 0);
+		hr1_in_alarm: in std_logic_vector (1 downto 0);
+		min0_in_alarm: in std_logic_vector (3 downto 0);
+		min1_in_alarm: in std_logic_vector (2 downto 0);
+		
+		mode_in_mux: in std_logic
+		
+		);
+end entity MUX;
+architecture bhv_mux of MUX is
+
+
+
+
+
+
+
+PROCESS (sms_alarm)
+		BEGIN
+			CASE sms_alarm IS 
+				WHEN "000" => seg2_alarm <= "0000001";
+				WHEN "001" => seg2_alarm <= "1001111";
+				WHEN "010" => seg2_alarm <= "0010010";
+				WHEN "011" => seg2_alarm <= "0000110";
+				WHEN "100" => seg2_alarm <= "1001100";
+				WHEN "101" => seg2_alarm <= "0100100";
+				WHEN OTHERS => seg2_alarm <= "0000001";
+			END CASE;
+	END PROCESS;
+	-- For the LS of the second
+	PROCESS (sls_alarm)
+		BEGIN
+			CASE sls_alarm IS 
+				 WHEN "0000" => seg1_alarm <= "0000001";
+				 WHEN "0001" => seg1_alarm <= "1001111";
+				 WHEN "0010" => seg1_alarm <= "0010010";
+				 WHEN "0011" => seg1_alarm <= "0000110";
+				 WHEN "0100" => seg1_alarm <= "1001100";
+				 WHEN "0101" => seg1_alarm <= "0100100";
+				 WHEN "0110" => seg1_alarm <= "0100000";
+				 WHEN "0111" => seg1_alarm <= "0001111";
+				 WHEN "1000" => seg1_alarm <= "0000000";
+				 WHEN "1001" => seg1_alarm <= "0000100";
+				 WHEN OTHERS => seg1_alarm <= "0000001";
+			END CASE;
+	END PROCESS;	
+	
+	--- For the MS of the Second
+	PROCESS (mms_alarm)
+		BEGIN
+			CASE mms_alarm IS 
+				WHEN "000" => seg4_alarm <= "0000001";
+				WHEN "001" => seg4_alarm <= "1001111";
+				WHEN "010" => seg4_alarm <= "0010010";
+				WHEN "011" => seg4_alarm <= "0000110";
+				WHEN "100" => seg4_alarm <= "1001100";
+				WHEN "101" => seg4_alarm <= "0100100";
+				WHEN OTHERS => seg4_alarm <= "0000001";
+			END CASE;
+	END PROCESS;
+	
+	-- For the LS of the second
+	PROCESS (mls_alarm)
+		BEGIN
+		CASE mls_alarm IS 
+			 WHEN "0000" => seg3_alarm <= "0000001";
+			 WHEN "0001" => seg3_alarm <= "1001111";
+			 WHEN "0010" => seg3_alarm <= "0010010";
+			 WHEN "0011" => seg3_alarm <= "0000110";
+			 WHEN "0100" => seg3_alarm <= "1001100";
+			 WHEN "0101" => seg3_alarm <= "0100100";
+			 WHEN "0110" => seg3_alarm <= "0100000";
+			 WHEN "0111" => seg3_alarm <= "0001111";
+			 WHEN "1000" => seg3_alarm <= "0000000";
+			 WHEN "1001" => seg3_alarm <= "0000100";
+			 WHEN OTHERS => seg3_alarm <= "0000001";		
+		 END CASE;
+	END PROCESS;	
+	
+	--For the MS of the hour hand
+	PROCESS(hms_alarm)
+		BEGIN
+			CASE hms_alarm IS 
+				WHEN "00" => seg6_alarm <= "0000001";
+				WHEN "01" => seg6_alarm <= "1001111";
+				WHEN "10" => seg6_alarm <= "0010010";
+				WHEN OTHERS => seg6_alarm <= "0000001";
+			END CASE;
+	END PROCESS;
+	
+	-- For the LS of the hour hand
+	PROCESS(hls_alarm)
+		BEGIN
+			CASE hls_alarm IS
+			 WHEN "0000" => seg5_alarm <= "0000001";
+			 WHEN "0001" => seg5_alarm <= "1001111";
+			 WHEN "0010" => seg5_alarm <= "0010010";
+			 WHEN "0011" => seg5_alarm <= "0000110";
+			 WHEN "0100" => seg5_alarm <= "1001100";
+			 WHEN "0101" => seg5_alarm <= "0100100";
+			 WHEN "0110" => seg5_alarm <= "0100000";
+			 WHEN "0111" => seg5_alarm <= "0001111";
+			 WHEN "1000" => seg5_alarm <= "0000000";
+			 WHEN "1001" => seg5_alarm <= "0000100";
+			 WHEN OTHERS => seg5_alarm <= "0000001";
+			END CASE;
+	END PROCESS;
+
+end architecture bhv_mux;
+
+
+
+

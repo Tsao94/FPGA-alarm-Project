@@ -1,0 +1,18 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity ctrl is
+port(
+		set: in std_logic;
+		mode: in std_logic;
+		reset: in std_logic;
+		clock_1hz: in std_logic;
+		clock_1hz_out: out std_logic;
+		nreset: out std_logic;
+		LED: out std_logic;
+		
+		);
+end entity ctrl;
